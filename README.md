@@ -9,15 +9,15 @@ It may also be compatible with earlier versions of the game, but I have not test
 A prebuilt version of the plugin is available in the [Releases](https://github.com/owengregson/SoulGems/releases) tab.
 
 ## Current Features
-* Combine Soul Gems
+### Combine Soul Gems
 Simply drag them on top of each other.
-* Split Soul Gems apart
+### Split Soul Gems apart
 Split into smaller pieces using /splitsouls [amount] while holding a Soul Gem.
-* Send Messages
+### Send Messages
 You can send messages on various events with hex color code support. Send messages on: Enable, Disable, Use, Split
-* Spawn Particles
+### Spawn Particles
 Particles can be spawned on various events with configurable colors, amount, and spread. Spawn particles on: Enable, Disable, Use, Idle
-* Play Sound Effects
+### Play Sound Effects
 The plugin can play sounds on various events with configurable volume and pitch. Play sounds on: Enable, Disable, Use, Split, Combine
 
 
