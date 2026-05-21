@@ -101,6 +101,4 @@ sounds:
 ```
 
 # Guide
-I might make a guide on how to set up the development environment yourself at some point, but I am too busy right now.
-The process is pretty standard for a MC plugin development environment, just set it up like you usually would and use maven to build.
-The build process is dependent on the AdvancedEnchantments jar, so make sure you have that in your maven dependencies and build with it.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local development setup.
