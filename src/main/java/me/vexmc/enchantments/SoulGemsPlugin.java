@@ -9,6 +9,7 @@ import me.vexmc.enchantments.listener.SoulActivateListener;
 import me.vexmc.enchantments.listener.SoulApplyListener;
 import me.vexmc.enchantments.listener.SoulAttemptListener;
 import me.vexmc.enchantments.listener.SoulCombineListener;
+import me.vexmc.enchantments.listener.SoulGemFormatListener;
 import me.vexmc.enchantments.runnable.SoulDisableRunnable;
 import me.vexmc.enchantments.runnable.SoulParticleRunnable;
 import org.bukkit.Bukkit;
@@ -64,7 +65,8 @@ public class SoulGemsPlugin extends JavaPlugin {
               new SoulActivateListener(),
               new SoulApplyListener(),
               new SoulAttemptListener(),
-              new SoulCombineListener()
+              new SoulCombineListener(),
+              new SoulGemFormatListener(this)
       );
 
       getLogger().info("SoulGems enabled successfully!");

@@ -1,5 +1,6 @@
 package me.vexmc.enchantments.listener;
 
+import me.vexmc.enchantments.SoulGemFormatter;
 import me.vexmc.enchantments.SoulGemsPlugin;
 import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
@@ -81,7 +82,7 @@ public class SoulAttemptListener implements Listener {
 
             if (souls - soulCount > 0) {
                DecimalFormat formatter = new DecimalFormat("#,###");
-               ItemStack soulGem = AEAPI.getSoulGem(souls - soulCount);
+               ItemStack soulGem = SoulGemFormatter.create(souls - soulCount);
                if (offHandIsItem) {
                   player.getInventory().setItemInOffHand(soulGem);
                } else {

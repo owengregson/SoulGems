@@ -1,5 +1,6 @@
 package me.vexmc.enchantments.command;
 
+import me.vexmc.enchantments.SoulGemFormatter;
 import me.vexmc.enchantments.SoulGemsPlugin;
 import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
@@ -54,8 +55,8 @@ public class SplitSoulsCommand implements CommandExecutor {
       }
 
       int splitInto = souls - take;
-      player.getInventory().setItemInMainHand(AEAPI.getSoulGem(splitInto));
-      player.getInventory().addItem(AEAPI.getSoulGem(take));
+      player.getInventory().setItemInMainHand(SoulGemFormatter.create(splitInto));
+      player.getInventory().addItem(SoulGemFormatter.create(take));
       Utils.sendMessages(player, plugin.getConfig().getStringList("settings.splitsouls.split"));
       Utils.playSounds(player, plugin, "split-soul-gems");
       return true;
