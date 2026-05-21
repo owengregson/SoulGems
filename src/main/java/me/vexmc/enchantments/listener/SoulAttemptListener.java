@@ -5,7 +5,6 @@ import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
 import net.advancedplugins.ae.impl.effects.api.AbilityPreactivateEvent;
 import net.advancedplugins.ae.impl.effects.effects.abilities.AdvancedAbility;
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,8 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -26,8 +23,14 @@ public class SoulAttemptListener implements Listener {
       if (event.getMainEntity() instanceof Player) {
          Player player = (Player) event.getMainEntity();
          AdvancedAbility ability = event.getEffect();
+         int soulCost = ability.getSouls();
 
          Utils.debug(player, PLUGIN, "Enchant Attempt Event!");
+
+         if (soulCost <= 0) {
+            Utils.debug(player, PLUGIN, "Non-soul enchant detected, so SoulGems will not modify it.");
+            return;
+         }
 
          if (!SoulActivateListener.ACTIVE_PLAYERS.contains(player.getUniqueId())) {
             Utils.debug(player, PLUGIN, "SM disabled, so the event was cancelled.");
@@ -35,11 +38,11 @@ public class SoulAttemptListener implements Listener {
             return;
          }
 
-         if (cantUse(player, ability.getSouls())) {
+         if (cantUse(player, soulCost)) {
             event.setCancelled(true);
             Utils.debug(player, PLUGIN, "Not enough souls, so the event was cancelled.");
          } else {
-            useSouls(player, ability.getSouls());
+            useSouls(player, soulCost);
          }
       }
    }
