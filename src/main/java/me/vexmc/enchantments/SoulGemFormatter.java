@@ -54,7 +54,7 @@ public final class SoulGemFormatter {
       String count = Integer.toString(souls);
 
       if (souls >= 5000) {
-         return "&4" + count;
+         return "&4&l" + count;
       }
 
       if (souls >= 1000) {
