@@ -1,6 +1,8 @@
 package me.vexmc.enchantments;
 
 import net.advancedplugins.ae.api.AEAPI;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +34,9 @@ public final class SoulGemFormatter {
       }
 
       int souls = AEAPI.getSoulsOnGem(item);
-      meta.displayName(Utils.translateColorCodes(String.format(NAME_FORMAT, formatSoulCount(souls))));
+      Component displayName = Utils.translateColorCodes(String.format(NAME_FORMAT, formatSoulCount(souls)))
+              .decoration(TextDecoration.ITALIC, false);
+      meta.displayName(displayName);
       item.setItemMeta(meta);
       return item;
    }
