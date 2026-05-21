@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class SoulGemFormatter {
-   private static final String NAME_FORMAT = "&c&lSoul Gem [%s&c&l]";
+   private static final String NAME_FORMAT = "&r&c&lSoul Gem &r&c&l[%s&r&c&l]";
 
    private SoulGemFormatter() {
    }
@@ -54,17 +54,17 @@ public final class SoulGemFormatter {
       String count = Integer.toString(souls);
 
       if (souls >= 5000) {
-         return "&4&l" + count;
+         return "&r&4&l" + count;
       }
 
       if (souls >= 1000) {
-         return "&6&l" + count;
+         return "&r&6&l" + count;
       }
 
       if (souls > 100) {
-         return "&b" + count;
+         return "&r&b" + count;
       }
 
-      return "&a" + count;
+      return "&r&a" + count;
    }
 }
