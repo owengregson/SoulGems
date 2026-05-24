@@ -57,6 +57,10 @@ public final class SoulGemFormatter {
    private static String formatSoulCount(int souls) {
       String count = Integer.toString(souls);
 
+      if (souls >= 10000) {
+         return "&r&4&l&n" + count;
+      }
+
       if (souls >= 5000) {
          return "&r&4&l" + count;
       }
@@ -65,10 +69,14 @@ public final class SoulGemFormatter {
          return "&r&6&l" + count;
       }
 
-      if (souls > 100) {
+      if (souls >= 500) {
          return "&r&b" + count;
       }
 
-      return "&r&a" + count;
+      if (souls >= 100) {
+         return "&r&a" + count;
+      }
+
+      return "&r&f" + count;
    }
 }
