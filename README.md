@@ -20,6 +20,17 @@ You can send messages on various events with hex color code support. Send messag
 Particles can be spawned on various events with configurable colors, amount, and spread. Spawn particles on: Enable, Disable, Use, Idle
 ### Play Sound Effects
 The plugin can play sounds on various events with configurable volume and pitch. Play sounds on: Enable, Disable, Use, Split, Combine
+### Dynamic Soul Gem Count Colors
+Soul Gem names automatically change the soul count color based on the number of souls stored:
+
+- 0-99: white
+- 100-499: green
+- 500-999: aqua
+- 1000-4999: bold gold
+- 5000-9999: bold dark red
+- 10000+: bold dark red and underlined
+
+Soul Gem names are also forced to render without Minecraft's default item-name italics.
 
 ## config.yml Preview
 ```yaml
@@ -100,5 +111,18 @@ sounds:
     - 'BLOCK_GLASS_BREAK:1.0:1.4'
 ```
 
+## Install
+1. Install AdvancedEnchantments.
+2. Download `SoulGems-1.3.1.jar`.
+3. Put it in your server's `plugins` folder.
+4. Restart the server.
+
+## Requirements
+- Paper/Spigot 1.20.4+
+- AdvancedEnchantments
+
 # Guide
 See [CONTRIBUTING.md](CONTRIBUTING.md) for local development setup.
+
+## Fork Notes
+This fork includes fixes and improvements not currently in the original SoulGems repo.
