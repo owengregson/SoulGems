@@ -7,7 +7,7 @@ This plugin was made for Spigot 1.20.4 but should be forward compatible with 1.2
 It may also be compatible with earlier versions of the game, but I have not tested it.
 
 ## Download
-A prebuilt version of the plugin is available in the [Releases](https://github.com/owengregson/SoulGems/releases) tab.
+A prebuilt version of the plugin is available in the [Releases](https://github.com/nickdoa/SoulGems/releases) tab.
 
 ## Current Features
 ### Combine Soul Gems
