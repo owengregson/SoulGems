@@ -4,10 +4,12 @@ import me.vexmc.enchantments.SoulGemFormatter;
 import me.vexmc.enchantments.SoulGemsPlugin;
 import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
+import net.advancedplugins.ae.impl.effects.armorutils.ArmorEquipEvent;
 import net.advancedplugins.ae.impl.effects.api.AbilityPreactivateEvent;
 import net.advancedplugins.ae.impl.effects.effects.abilities.AdvancedAbility;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -33,6 +35,12 @@ public class SoulAttemptListener implements Listener {
             return;
          }
 
+         if (isCommandReapply(event)) {
+            Utils.debug(player, PLUGIN, "Ignoring soul enchant during /apply or /reapply.");
+            event.setCancelled(true);
+            return;
+         }
+
          if (!SoulActivateListener.ACTIVE_PLAYERS.contains(player.getUniqueId())) {
             Utils.debug(player, PLUGIN, "SM disabled, so the event was cancelled.");
             event.setCancelled(true);
@@ -46,6 +54,20 @@ public class SoulAttemptListener implements Listener {
             useSouls(player, soulCost);
          }
       }
+   }
+
+   private static boolean isCommandReapply(@NotNull AbilityPreactivateEvent event) {
+      if (event.getActionExecution() == null || event.getActionExecution().getBuilder() == null) {
+         return false;
+      }
+
+      Event sourceEvent = event.getActionExecution().getBuilder().getEvent();
+      if (!(sourceEvent instanceof ArmorEquipEvent)) {
+         return false;
+      }
+
+      ArmorEquipEvent armorEquipEvent = (ArmorEquipEvent) sourceEvent;
+      return armorEquipEvent.getMethod() == ArmorEquipEvent.EquipMethod.COMMAND;
    }
 
    public static boolean cantUse(@NotNull Player player, int soulCount) {
