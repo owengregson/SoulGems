@@ -6,10 +6,12 @@ import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,18 +20,32 @@ public class SoulActivateListener implements Listener {
    private static final SoulGemsPlugin PLUGIN = SoulGemsPlugin.getInstance();
    public static final List<UUID> ACTIVE_PLAYERS = Lists.newArrayList();
 
-   @EventHandler
+   @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
    public void onPlayerInteract(PlayerInteractEvent event) {
-      if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-         ItemStack item = event.getItem();
-         if (AEAPI.isASoulGem(item)) {
-            Player player = event.getPlayer();
-            if (ACTIVE_PLAYERS.contains(player.getUniqueId())) {
-               deactivateSoulMode(player);
-            } else {
-               activateSoulMode(player);
-            }
-         }
+      if (!PLUGIN.getConfig().getBoolean("settings.soul-mode.enabled", true)
+              || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)) {
+         return;
+      }
+
+      Player player = event.getPlayer();
+      if (event.getHand() == EquipmentSlot.OFF_HAND
+              && AEAPI.isASoulGem(player.getInventory().getItemInMainHand())) {
+         return;
+      }
+
+      ItemStack item = event.getItem();
+      if (!AEAPI.isASoulGem(item)) {
+         return;
+      }
+
+      event.setCancelled(true);
+      event.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
+      event.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
+
+      if (ACTIVE_PLAYERS.contains(player.getUniqueId())) {
+         deactivateSoulMode(player);
+      } else {
+         activateSoulMode(player);
       }
    }
 
