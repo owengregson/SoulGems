@@ -1,5 +1,6 @@
 package me.vexmc.enchantments.listener;
 
+import me.vexmc.enchantments.SoulGemFormatter;
 import me.vexmc.enchantments.SoulGemsPlugin;
 import me.vexmc.enchantments.Utils;
 import net.advancedplugins.ae.api.AEAPI;
@@ -23,7 +24,7 @@ public class SoulCombineListener implements Listener {
          int cursorSouls = AEAPI.getSoulsOnGem(cursor) * cursor.getAmount();
          Utils.playSounds((Player) event.getWhoClicked(), plugin, "combine-soul-gems");
          event.getView().setCursor(null);
-         event.setCurrentItem(AEAPI.getSoulGem(currentItemSouls + cursorSouls));
+         event.setCurrentItem(SoulGemFormatter.create(currentItemSouls + cursorSouls));
          event.setCancelled(true);
       }
    }

@@ -11,9 +11,8 @@ settings:
     split:
       - '&a&l(!)&r &aSoul gem has been split.'
   soul-use:
-    enabled: true
-    messages: # Use %amount% to insert the amount of souls used.
-      - '&e&l** SOULS: &6&n&l%amount%&r&e&l **'
+    enabled: false
+    messages: []
   soul-mode:
     enabled: true
     messages:
